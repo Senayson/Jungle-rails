@@ -8,11 +8,7 @@
     <p><%= product.description %></p>
   </td>
   <td>
-<<<<<<< HEAD
    <%= product.price %>
-=======
-   $ <%= product.price %>
->>>>>>> fix/money-formatting
   </td>
   <td>
     <%= button_to remove_item_cart_path(product_id: product.id), class: 'btn btn-xs btn-danger' do %> - <% end %>
@@ -20,10 +16,6 @@
     <%= button_to add_item_cart_path(product_id: product.id), class: 'btn btn-xs btn-success' do %> + <% end %>
   </td>
   <td>
-<<<<<<< HEAD
    <%= product.price * quantity %>
-=======
-   $ <%= product.price * quantity %>
->>>>>>> fix/money-formatting
   </td>
 </tr>
