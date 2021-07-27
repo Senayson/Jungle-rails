@@ -20,17 +20,17 @@ RSpec.describe Product, type: :model do
       end
 
       it 'Fails to save when price field is nil' do
-        @product.price = nil
-        puts @product.price 
+        @product.price_cents = nil
         expect(@product.save).to eq false
-        # expect(@product.errors.messages[:price]).to eq ["is not a number", "can't be blank"]
+        expect(@product.errors.messages[:price_cents]).to eq ["is not a number"]
       end
-
+      
+      
       it 'Fails to save when price field is not a number' do
-        @product.price = "20"
-        puts @product.price 
+        @product.price_cents = "people"
+        puts @product.price_cents.class
         expect(@product.save).to eq false
-        # expect(@product.errors.messages[:price]).to eq ["is not a number", "can't be blank"]
+        expect(@product.errors.messages[:price_cents]).to eq ["is not a number"]
       end
 
       it 'Fails to save when quantity field is nil' do
