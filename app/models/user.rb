@@ -7,11 +7,14 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: {case_sensitive: false}
   validates :password, presence: true, length: { in: 8..20}
   validates :password_confirmation, presence: true
-  # before_validation :downcase_fields
-
-  # def downcase_fields
-  #   self.email.downcase!
-  # end
+  before_validation :remove_whitespace, :only => [:email]
+  
+  
+  def remove_whitespace
+    
+    self.email = self.email.strip unless self.email.nil?
+    
+  end
 
   def authenticate_with_credentials(email, password)
     user = User.find_by_email(email)

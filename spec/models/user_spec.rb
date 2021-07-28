@@ -48,8 +48,20 @@ RSpec.describe User, type: :model do
       @user2 = User.new({first_name: 'Simon', last_name: 'Haile', email: 'senay@gmail.com', password: "1234567890", password_confirmation: "1234567890"})
       
       expect(@user2.save).to eq false
+    end
+    it 'should validate email with whitespaces' do
+      @user3 = User.new({first_name: 'Mewael', last_name: 'Alema', email: 'mewael@gmail.com ', password: "1234567890", password_confirmation: "1234567890"})
+      @user3.save
 
-    
+      @user4 = User.new({first_name: 'Luwam', last_name: 'Haile', email: '  mewael@gmail.com  ', password: "1234567890", password_confirmation: "1234567890"})
+      expect(@user4.save).to eq false
+    end
+    it 'should be case-insensitive to email' do
+      @user5 = User.new({first_name: 'Mewael', last_name: 'Alema', email: 'mEwael@gmail.com ', password: "1234567890", password_confirmation: "1234567890"})
+      @user5.save
+
+      @user6 = User.new({first_name: 'Luwam', last_name: 'Haile', email: '  mewael@gmail.com  ', password: "1234567890", password_confirmation: "1234567890"})
+      expect(@user6.save).to eq false
     end
   end
 
