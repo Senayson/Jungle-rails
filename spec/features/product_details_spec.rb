@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "ProductDetails", type: :feature do
+RSpec.feature "ProductDetails", type: :feature, js: true do
   
   before :each do
     @category = Category.create! name: 'Apparel'
@@ -21,10 +21,9 @@ RSpec.feature "ProductDetails", type: :feature do
       el = page.find('article:first-child header').find('a')
       
     el.click
-
-      expect(page).to have_css ('.product-detail')
-      # puts page.html
-
+    
+    expect(page).to have_css ('.product-detail')
+    
     end
 
 
